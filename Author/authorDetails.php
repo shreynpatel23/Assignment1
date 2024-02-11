@@ -1,4 +1,4 @@
-<?php include 'connect.php'; ?>
+<?php include '../database/connect.php'; ?>
 
 <!doctype html>
 <html lang="en">
@@ -15,24 +15,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="index.php">Amazon</a>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="bookList.php">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="authorList.php">Authors</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php include '../common/header.php' ?>
     <div class="container my-5">
         <a href="authorList.php" class="btn btn-secondary">Back</a>
         <hr>
@@ -65,8 +48,8 @@
                         <div class="d-flex align-items-center justify-content-between">
                             <h1 class="display-6 mt-3">Author Details</h1>
                             <div class="d-flex align-items-center gap-4">
-                                <a href="updateAuthor.php?authorId='. $authorId . '" class="btn btn-primary">Edit</a>
-                                <a href="deleteAuthor.php?authorId='. $authorId . '" class="btn btn-danger">Delete</a>
+                                <a href="updateAuthor.php?authorId=' . $authorId . '" class="btn btn-primary">Edit</a>
+                                <a href="deleteAuthor.php?authorId=' . $authorId . '" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                         <div class="py-4">
