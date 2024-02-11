@@ -22,14 +22,16 @@
             <a href="addBook.php" class="btn btn-primary">Add Book</a>
         </div>
         <?php
-        $sql = "Select * from Books ORDER BY book_id DESC";
+        $sql = "select * FROM Books JOIN Authors ON Books.author_id = Authors.author_id ORDER BY book_id DESC";
 
         $result = mysqli_query($connect, $sql);
-
+        
         echo ' <div class="d-flex align-items-start gap-4 flex-wrap">';
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $id = $row['book_id'];
+                $bookId = $row['book_id'];
+                $authorId = $row['author_id'];
+                $authorName = $row['full_name'];
                 $title = $row['title'];
                 $price = $row['price'];
                 $publicationDate = $row['publication_date'];
@@ -40,6 +42,11 @@
                             <h5 class="card-title">' . $title . '</h5>
                             <h6 class="card-subtitle mb-2 text-muted">$ ' . $price . ' </h6>
                             <p class="card-text">Publication Date: <span class="fw-bold" >' . $publicationDate . '</span> </p>
+                            <p class="card-text">Author: <a href="../Author/authorDetails.php?authorId=' . $authorId . '" class="text-primary fw-bold">' . $authorName . '</a> </p>
+                            <div class="d-flex align-items-center gap-4 mt-3">
+                                <a href="updateBook.php?bookId='. $bookId .'" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="deleteBook.php?bookId='. $bookId .'" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
                         </div>
                     </div>
                     ';

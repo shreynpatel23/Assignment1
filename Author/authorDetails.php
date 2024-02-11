@@ -81,14 +81,14 @@
                 echo '<p>This author has not written a single book!</p>';
             } else {
                 echo '<h4 class="mb-3">Books Written</h4>';
-                echo '<div class="d-flex align-items-center gap-4 flex-wrap">';
+                echo '<div class="d-flex align-items-start gap-4 flex-wrap">';
                 // read the data from author books
                 $i = 0;
                 while ($i < count($authorBooks)) {
                     echo '
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">' . $authorBooks[$i]->bookTitle . ' Book Name</h5>
+                        <h5 class="card-title">' . $authorBooks[$i]->bookTitle . '</h5>
                         <h6 class="card-subtitle mb-2 text-muted">$ ' . $authorBooks[$i]->bookPrice . ' </h6>
                         <p class="card-text">Publication Date: ' . $authorBooks[$i]->bookPublicationDate . ' </p>
                     </div>

@@ -3,7 +3,7 @@
 include '../database/connect.php';
 
 if (isset($_POST['submit'])) {
-    $title = $_POST['bookTitle'];
+    $title = $_POST['title'];
     $price = $_POST['price'];
     $publication_date = $_POST['publication_date'];
     $author_id = $_POST['author_id'];
@@ -41,8 +41,8 @@ if (isset($_POST['submit'])) {
         <h1 class="display-6">Add Book</h1>
         <form style="width: 40rem;" method="post">
             <div class="mb-3">
-                <label for="bookTitle" class="form-label">Title</label>
-                <input required type="text" class="form-control" id="bookTitle" name="bookTitle" aria-describedby="Book Title">
+                <label for="title" class="form-label">Title</label>
+                <input required type="text" class="form-control" id="title" name="title" aria-describedby="Book Title">
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
