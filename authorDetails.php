@@ -48,7 +48,7 @@
 
         if (isset($authorId)) {
             // fetch the details from db
-            $sql = 'select * FROM Authors WHERE Authors.author_id = ' . $authorId . '';
+            $sql = 'select * FROM Authors WHERE author_id = ' . $authorId . '';
 
             $result = mysqli_query($connect, $sql);
 

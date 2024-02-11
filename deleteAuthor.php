@@ -1,4 +1,22 @@
-<?php include 'connect.php'; ?>
+<?php
+
+include 'connect.php';
+
+if (isset($_POST['submit'])) {
+
+    $authorId = $_POST['author_id'];
+    $sql = 'delete FROM Authors WHERE author_id = ' . $authorId . '';
+
+    $result = mysqli_query($connect, $sql);
+
+    if ($result) {
+        // go back to list
+        header('location: authorList.php');
+    } else {
+        die(mysqli_error($connect));
+    }
+}
+?>
 
 <!doctype html>
 <html lang="en">
@@ -34,12 +52,40 @@
         </div>
     </nav>
     <div class="container my-5">
-        <h1 class="display-6">Author Delete</h1>
-        <p>hello from Author Delete</p>
+        <h1 class="display-6">Delete Author</h1>
+        <?php
+        $authorId = $_GET['authorId'];
+        $authorName = "";
+
+        if (isset($authorId)) {
+            // fetch the details from db
+            $sql = 'select * FROM Authors WHERE author_id = ' . $authorId . '';
+
+            $result = mysqli_query($connect, $sql);
+
+            if ($result) {
+                while ($row = mysqli_fetch_array($result)) {
+                    $authorName = $row['full_name'];
+                }
+            }
+        }
+        echo '
+            <p class="lead">Are you sure you want to delete <br/> <span class="fw-bold">' . $authorName . '</span></p>
+            <p class="lead">Please keep in mind, you cannot revert this action</p>
+            <div class="d-flex align-items-center gap-4 mt-4">
+                <a href="authorDetails.php?authorId=' . $authorId . '" class="btn btn-secondary">Cancel</a>
+                <form method="post">
+                    <input type="hidden" name="author_id" value=' . $authorId . '>
+                    <button type="submit" name="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            '
+        ?>
     </div>
+
     <footer class="my-3 text-center">
-    <p class="mb-0 text-dark fw-bold">© Copyright Amazon 2024 | All rights reserved</p>
-  </footer>
+        <p class="mb-0 text-dark fw-bold">© Copyright Amazon 2024 | All rights reserved</p>
+    </footer>
 </body>
 
 </html>
