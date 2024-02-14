@@ -11,8 +11,6 @@ if (isset($_POST['submit'])) {
 
     $sql = "UPDATE Books SET title = '$title', price = '$price', publication_date = '$publicationDate', author_id = '$authorId' WHERE book_id = $bookId";
 
-    echo $sql;
-
     $result = mysqli_query($connect, $sql);
 
     if ($result) {
