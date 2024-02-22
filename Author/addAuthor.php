@@ -9,7 +9,13 @@ if (isset($_POST['submit'])) {
   $language = $_POST['language'];
   $birthplace = $_POST['birthplace'];
 
-  $sql = "INSERT INTO `Authors`(`full_name`, `nationality`, `biography`, `language`, `birthplace`) VALUES ('$fullName','$nationality','$bio','$language','$birthplace')";
+  $sql = "INSERT INTO `Authors`(`full_name`, `nationality`, `biography`, `language`, `birthplace`) 
+          VALUES (
+          '". mysqli_real_escape_string($connect, $fullName ) ."',
+          '". mysqli_real_escape_string($connect, $nationality ) ."',
+          '". mysqli_real_escape_string($connect, $bio ) ."',
+          '". mysqli_real_escape_string($connect, $language ) ."',
+          '". mysqli_real_escape_string($connect, $birthplace ) ."')";
 
   $result = mysqli_query($connect, $sql);
 
@@ -76,9 +82,7 @@ if (isset($_POST['submit'])) {
       </div>
     </form>
   </div>
-  <footer class="my-3 text-center">
-    <p class="mb-0 text-dark fw-bold">© Copyright Amazon 2024 | All rights reserved</p>
-  </footer>
+  <?php include'../common/footer.php' ?>
 </body>
 
 </html>

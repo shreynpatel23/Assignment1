@@ -9,7 +9,12 @@ if (isset($_POST['submit'])) {
     $publicationDate = $_POST['publication_date'];
     $authorId = $_POST['author_id'];
 
-    $sql = "UPDATE Books SET title = '$title', price = '$price', publication_date = '$publicationDate', author_id = '$authorId' WHERE book_id = $bookId";
+    $sql = "UPDATE Books SET 
+            title = '" . mysqli_real_escape_string($connect, $title) . "', 
+            price = '" . mysqli_real_escape_string($connect, $price) . "', 
+            publication_date = '" . mysqli_real_escape_string($connect, $publicationDate) . "', 
+            author_id = '" . mysqli_real_escape_string($connect, $authorId) . "' 
+            WHERE book_id = $bookId";
 
     $result = mysqli_query($connect, $sql);
 
@@ -31,6 +36,7 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="../assets/styles/styles.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -104,9 +110,7 @@ if (isset($_POST['submit'])) {
         ';
         ?>
     </div>
-    <footer class="my-3 text-center">
-        <p class="mb-0 text-dark fw-bold">© Copyright Amazon 2024 | All rights reserved</p>
-    </footer>
+    <?php include'../common/footer.php' ?>
 </body>
 
 </html>
